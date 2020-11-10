@@ -1,5 +1,5 @@
 .comparator-title {
-    color: rgb(145, 85, 201);
+    color: #9f6bc0;
     text-align: center;
 }
 
@@ -14,9 +14,9 @@
 
 .comparator-element {
     width: 100%;
-    border: solid rgb(145, 85, 201) 1.5px;
+    border: solid #9f6bc0 1.5px;
     text-align: center;
-    color: rgb(145, 85, 201);
+    color: #9f6bc0;
     transition: background-color 0.4s ease-in, color 0.4s ease-in;
 }
 
@@ -30,7 +30,7 @@
 
     .comparator-element.main {
         color: #fff;
-        background-color: rgb(145, 85, 201);
+        background-color: #9f6bc0;
         font-weight: 700;
     }
 

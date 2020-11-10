@@ -1,11 +1,13 @@
 import React from 'react';
 
 import MainSection from './MainSection.js'
+import Navigation from './Navigation.js';
 
 function App() {
 
   return (
-    <div className="App">
+    <div className="wrapper">
+      <Navigation />
       <MainSection />
     </div>
   );

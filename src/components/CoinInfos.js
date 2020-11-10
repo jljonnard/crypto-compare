@@ -13,21 +13,20 @@ class CoinInfos extends React.Component {
                     <div className="main sub container">
                         <div className="container">
                             <div className="wrapper">
+                                <img
+                                    className="pic"
+                                    src={this.props.coinData.logo.small}
+                                    alt={this.props.coinData.name}
+                                ></img>
                                 <h2>
                                     {this.props.coinData.name} (
                                     {this.props.coinData.symbol.toUpperCase()})
                                 </h2>
-                                <Favorite coin={this.props.coinData} origin="info"/>
+                                <Favorite coin={this.props.coinData} origin="info" />
                             </div>
                             <h2>{this.props.coinData.price} €</h2>
                         </div>
                         <div className="container">
-                            <div className="box">
-                                <img
-                                    src={this.props.coinData.logo}
-                                    alt={this.props.coinData.name}
-                                ></img>
-                            </div>
                             <div className="box">
                                 <h4>Informations diverses</h4>
                                 <table>

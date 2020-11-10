@@ -28,7 +28,7 @@ class FavoriteList extends React.Component {
                                         <div className="left container">
                                             <img
                                                 className="pic"
-                                                src={coin.picture}
+                                                src={coin.logo.thumb}
                                                 alt={coin.name}
                                             ></img>
                                             <p title={coin.name}>

@@ -23,7 +23,7 @@ class Versus extends React.Component {
                                 <Favorite coin={this.props.coinData} origin="versus" />
                             </div>
                             <img
-                                src={this.props.coinData.logo}
+                                src={this.props.coinData.logo.large}
                                 alt={this.props.coinData.name}
                             ></img>
                         </div>
@@ -34,6 +34,7 @@ class Versus extends React.Component {
                                 title="MarketCap"
                                 leftData={this.props.coinData.marketcap}
                                 rightData={this.props.coinDataRight.marketcap}
+                                add="M$"
                             />
                             <Comparator
                                 title="Score communautaire"
@@ -80,7 +81,7 @@ class Versus extends React.Component {
                                 <Favorite coin={this.props.coinDataRight} origin="versus" />
                             </div>
                             <img
-                                src={this.props.coinDataRight.logo}
+                                src={this.props.coinDataRight.logo.large}
                                 alt={this.props.coinDataRight.name}
                             ></img>
                         </div>

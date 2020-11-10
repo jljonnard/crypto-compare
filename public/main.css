@@ -33,8 +33,9 @@ h3 {
 }
 h4 {
     font-size: 150%;
-    color: rgb(145, 85, 201);
+    color: #9f6bc0;
     text-align: center;
+    margin-bottom: 1%;
 }
 h5 {
     font-size: 120%;
@@ -47,7 +48,7 @@ header {
     padding: 2%;
     margin: auto;
     text-align: center;
-    color: rgb(145, 85, 201);
+    color: #9f6bc0;
     background-color: #FFF;
     font-size: 80%;
     box-shadow: 0px 5px 5px lightgray;
@@ -67,13 +68,13 @@ li:before {
 	vertical-align: middle;
 	font-weight: bold;
     font-size: 1.1em;
-    color: #415ba5	
+    color: #9f6bc0	
 }
 
 /* Navigation */
 
 nav {
-    width: 18%;
+    width: 18vw;
     text-align: center;
     background-color: #FFF;
     height: 100vh;
@@ -92,7 +93,7 @@ nav {
 }
 
 .nav-element.selected {
-    color: rgb(145, 85, 201);
+    color: #9f6bc0;
 }
 
 /* Buttons */
@@ -107,10 +108,10 @@ nav {
     -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    background: rgb(145, 85, 201);
+    background: #9f6bc0;
     color: #FFF;
     border-radius: 200px;
-    border: solid rgb(145, 85, 201) 2px;
+    border: solid #9f6bc0 2px;
     cursor: pointer;
     display: inline-block;
     font-weight: 700;
@@ -123,13 +124,13 @@ nav {
 }
 
     .button:hover {
-        color: rgb(145, 85, 201);
+        color: #9f6bc0;
         background: none;
     }
 
     .button.alt {
         background: none;
-        color:rgb(145, 85, 201);
+        color:#9f6bc0;
     }
 
     .button.small {
@@ -164,7 +165,7 @@ input[type="text"] {
 
     input[type="text"]:focus,
     input[type="text"]:active {
-        border: solid 1.5px rgb(145, 85, 201);
+        border: solid 1.5px #9f6bc0;
     }
 
 /* Boxes */
@@ -189,7 +190,7 @@ input[type="text"] {
 }
 
     .box.colored {
-        background: rgb(145, 85, 201);
+        background: #9f6bc0;
     }
 
     .box.fit {
@@ -242,7 +243,7 @@ table {
     }
 
     table thead {
-        color: rgb(145, 85, 201);
+        color: #9f6bc0;
         font-family: Roboto;
         font-weight: 700;
         font-size: 1.5em;
@@ -298,7 +299,7 @@ table {
 
 .page-wrap {
     margin-top: 1%;
-    width: 82%;
+    width: 82vw;
 }
 
 /* Containers */

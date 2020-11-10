@@ -56,9 +56,9 @@ class Chart extends React.Component {
                             datasets: [
                                 {
                                     data: this.props.coinChart[1],
-                                    backgroundColor: "rgba(145,85,201,0.25)",
-                                    borderColor: "rgba(145,85,201,0.6)",
-                                    hoverBackgroundColor: "rgba(240,150,20,0.4)",
+                                    backgroundColor: "rgba(159,107,192,0.25)",
+                                    borderColor: "rgba(159,107,192,0.6)",
+                                    hoverBackgroundColor: "rgba(159,107,192,1)",
                                     pointBackgroundColor: "rgba(0,0,0,0)",
                                     pointBorderColor: "rgba(0,0,0,0)",
                                 },
