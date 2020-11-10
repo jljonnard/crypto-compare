@@ -35,7 +35,6 @@ class SearchBar extends React.Component {
         this.resizeResults(event.target.value);
 
         if (event.target.value.length > 2) {
-            console.log(this.state.results)
             while (id < this.props.allCoinsList.length && results.length < 7) {
                 if (
                     this.props.allCoinsList[id].symbol.toUpperCase() ===

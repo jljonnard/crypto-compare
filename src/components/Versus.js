@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import SearchBar from "./SearchBar.js";
 import Comparator from "./Comparator.js";
 import VersusChart from "./VersusChart.js";
+import Favorite from "./Favorite.js";
 
 class Versus extends React.Component {
 
@@ -17,7 +18,10 @@ class Versus extends React.Component {
                 <div className="container">
                     {this.props.coinData && (
                         <div>
-                            <h2>{this.props.coinData.name}</h2>
+                            <div className="wrapper">
+                                <h2>{this.props.coinData.name}</h2>
+                                <Favorite coin={this.props.coinData} origin="versus" />
+                            </div>
                             <img
                                 src={this.props.coinData.logo}
                                 alt={this.props.coinData.name}
@@ -71,7 +75,10 @@ class Versus extends React.Component {
                     )}
                     {this.props.coinDataRight && (
                         <div>
-                            <h2>{this.props.coinDataRight.name}</h2>
+                            <div className="wrapper">
+                                <h2>{this.props.coinDataRight.name}</h2>
+                                <Favorite coin={this.props.coinDataRight} origin="versus" />
+                            </div>
                             <img
                                 src={this.props.coinDataRight.logo}
                                 alt={this.props.coinDataRight.name}

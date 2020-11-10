@@ -17,7 +17,7 @@ class CoinInfos extends React.Component {
                                     {this.props.coinData.name} (
                                     {this.props.coinData.symbol.toUpperCase()})
                                 </h2>
-                                <Favorite coin={this.props.coinData}/>
+                                <Favorite coin={this.props.coinData} origin="info"/>
                             </div>
                             <h2>{this.props.coinData.price} €</h2>
                         </div>

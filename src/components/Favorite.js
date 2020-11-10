@@ -9,22 +9,18 @@ class Favorite extends React.Component {
     };
 
     initializeFavorite() {
-        if (this.props.favoriteList.includes(this.props.coin)) {
-            return true;
-        } else {
-            return false;
-        }
+        let flag = false;
+        this.props.favoriteList.forEach((coin) => {
+            if (coin.id === this.props.coin.id) {
+                flag = true;
+            }
+        });
+        return flag;
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.coin.id !== prevProps.coin.id) {
-            let flag = false
-            this.props.favoriteList.forEach(coin => {
-                if(coin.id === this.props.coin.id) {
-                    flag = true
-                }
-            })
-            this.setState({ isFavorite: flag });
+            this.setState({ isFavorite: this.initializeFavorite() });
         }
     }
 

@@ -91,7 +91,7 @@ nav {
     font-size: 150%;
 }
 
-.nav-element:hover {
+.nav-element.selected {
     color: rgb(145, 85, 201);
 }
 
@@ -293,6 +293,7 @@ table {
 
 .wrapper {
     display: flex;
+    justify-content: center;
 }
 
 .page-wrap {
@@ -356,4 +357,8 @@ table {
     display: flex;
     flex-direction: column;
     justify-content: start;
+}
+
+.chart {
+    margin-top: 4%;
 }

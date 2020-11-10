@@ -8,6 +8,12 @@
     display: none;
 }
 
+.result {
+    padding-left: 1%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+
 .result.onFocus , .result:hover {
     background-color: rgb(145, 85, 201);;
     color: #FFF;
