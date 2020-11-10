@@ -1,0 +1,36 @@
+.comparator-title {
+    color: rgb(145, 85, 201);
+    text-align: center;
+}
+
+.comparator-wrap {
+    margin-top: 5%;
+}
+
+.comparator {
+    display: flex;
+    justify-content: space-around;
+}
+
+.comparator-element {
+    width: 100%;
+    border: solid rgb(145, 85, 201) 1.5px;
+    text-align: center;
+    color: rgb(145, 85, 201);
+    transition: background-color 0.4s ease-in, color 0.4s ease-in;
+}
+
+    .comparator-element.left {
+        border-radius: 10px 0px 0px 10px;
+    }
+
+    .comparator-element.right {
+        border-radius: 0px 10px 10px 0px;
+    }
+
+    .comparator-element.main {
+        color: #fff;
+        background-color: rgb(145, 85, 201);
+        font-weight: 700;
+    }
+
