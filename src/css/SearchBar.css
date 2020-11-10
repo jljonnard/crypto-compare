@@ -1,0 +1,14 @@
+.results {
+    z-index: 7;
+    position: absolute;
+    background-color: #FFF;
+    border: #bfbfbf 1px;
+    border-style: solid;
+    border-radius: 3px;
+    display: none;
+}
+
+.result.onFocus , .result:hover {
+    background-color: rgb(145, 85, 201);;
+    color: #FFF;
+}

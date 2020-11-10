@@ -3,36 +3,53 @@ import { connect } from "react-redux";
 
 import { fetchCoinData, fetchCoinDataRight, setVisibilityFilter } from "../actions";
 
+import "../css/SearchBar.css";
+
 class SearchBar extends React.Component {
     state = {
         results: [],
+        search: "",
     };
 
-    search = () => {
-        let searchTerm = "";
-        if (this.props.side === "right") {
-            searchTerm = document.querySelectorAll("input")[1];
-        } else {
-            searchTerm = document.querySelector("input");
+    resizeResults(search) {
+        //fonction qui permet de donner aux résultats la même largeur que le champ input
+        const wrapper = document.querySelector("#searchWrapper-" + this.props.side);
+        let resultsSpace = document.querySelector(".results." + this.props.side);
+
+        if (resultsSpace) {
+            resultsSpace.style.width = wrapper.offsetWidth + "px";
+            resultsSpace.style.top = wrapper.offsetTop + wrapper.offsetHeight + "px";
+            resultsSpace.style.left = wrapper.offsetLeft + "px";
+
+            if (search.length > 2) {
+                resultsSpace.style.display = "block";
+            } else {
+                resultsSpace.style.display = "none";
+            }
         }
+    }
+
+    handleSearchUpdate = (event) => {
         let results = [];
         let id = 0;
+        this.resizeResults(event.target.value);
 
-        if (searchTerm.value.length > 2) {
+        if (event.target.value.length > 2) {
+            console.log(this.state.results)
             while (id < this.props.allCoinsList.length && results.length < 7) {
                 if (
                     this.props.allCoinsList[id].symbol.toUpperCase() ===
-                    searchTerm.value.toUpperCase()
+                    event.target.value.toUpperCase()
                 ) {
                     results.unshift({
                         id: this.props.allCoinsList[id].id,
                         name: this.props.allCoinsList[id].name,
                     });
                 }
-                if (
+                else if (
                     this.props.allCoinsList[id].name
                         .toUpperCase()
-                        .startsWith(searchTerm.value.toUpperCase()) &&
+                        .startsWith(event.target.value.toUpperCase()) &&
                     results.length < 6
                 ) {
                     results.push({
@@ -42,14 +59,15 @@ class SearchBar extends React.Component {
                 }
                 id++;
             }
-            this.setState({ results: results });
+            this.setState({ results: results, search: event.target.value });
         } else {
-            this.setState({ results: [] });
+            this.setState({ results: [], search: event.target.value });
         }
     };
 
     handleClick(coin) {
-        this.setState({ results: [] });
+        this.setState({ results: [], search: "" });
+        this.resizeResults("")
 
         switch (this.props.side) {
             case "left":
@@ -67,10 +85,20 @@ class SearchBar extends React.Component {
     render() {
         return (
             <div className="vertical container">
-                <input type="text" placeholder="Recherche" onChange={this.search}></input>
-                <div>
+                <input
+                    id={`searchWrapper-${this.props.side}`}
+                    type="text"
+                    placeholder="Recherche"
+                    onChange={this.handleSearchUpdate}
+                    value={this.state.search}
+                ></input>
+                <div className={`results ${this.props.side}`}>
                     {this.state.results.map((result) => (
-                        <div key={result.id} onClick={() => this.handleClick(result.id)}>
+                        <div
+                            className="result"
+                            key={result.id + this.props.side}
+                            onClick={() => this.handleClick(result.id)}
+                        >
                             {result.name}
                         </div>
                     ))}
