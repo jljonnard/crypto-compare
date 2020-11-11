@@ -14,7 +14,7 @@
     padding-bottom: 0.5%;
 }
 
-.result.onFocus , .result:hover {
+.result.onFocus , .result:hover, .result.selected {
     background-color: rgb(145, 85, 201);;
     color: #FFF;
 }

@@ -172,7 +172,7 @@ input[type="text"] {
 
 .box {
     background-color: #FFF;
-    margin: 2%;
+    margin: 1%;
     padding: 5px;
     margin-bottom: 20px;
     display: flex;
@@ -297,9 +297,18 @@ table {
     justify-content: center;
 }
 
+    .wrapper.title {
+        flex-wrap: wrap;
+    }
+
 .page-wrap {
     margin-top: 1%;
     width: 82vw;
+}
+
+.coin-wrap {
+    width: 27%;
+    text-align: center;
 }
 
 /* Containers */
@@ -360,6 +369,6 @@ table {
     justify-content: start;
 }
 
-.chart {
-    margin-top: 4%;
+.chrt {
+    margin-top: 3%;
 }

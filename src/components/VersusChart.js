@@ -44,7 +44,7 @@ class VersusChart extends React.Component {
 
     render() {
         return (
-            <div className="chart">
+            <div className="box chart">
                 <div className="left container">
                     {buttons.map((button) => (
                         <div

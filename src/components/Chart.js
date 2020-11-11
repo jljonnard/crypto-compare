@@ -37,7 +37,7 @@ class Chart extends React.Component {
 
     render() {
         return (
-            <div className="chart">
+            <div className="chart box">
                 <div className="left container">
                     {buttons.map(button => (
                         <div

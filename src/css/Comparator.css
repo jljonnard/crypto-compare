@@ -5,6 +5,7 @@
 
 .comparator-wrap {
     margin-bottom: 5%;
+    font-size: 130%;
 }
 
 .comparator {
@@ -17,6 +18,7 @@
     border: solid #9f6bc0 1.5px;
     text-align: center;
     color: #9f6bc0;
+    font-size: 90%;
     transition: background-color 0.4s ease-in, color 0.4s ease-in;
 }
 

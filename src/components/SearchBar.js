@@ -9,7 +9,46 @@ class SearchBar extends React.Component {
     state = {
         results: [],
         search: "",
+        selectedResult: -1,
     };
+
+    componentDidMount() {
+        document.addEventListener("click", (event) => {
+            if (event.target.className !== "searchBar") {
+                this.reset()
+             }
+        })
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Tab") {
+                this.reset();
+            }
+
+            if (this.state.results.length > 0) {
+                switch (event.key) {
+                    case "ArrowDown":
+                        if (this.state.selectedResult < this.state.results.length - 1) {
+                            this.setState({ selectedResult: this.state.selectedResult + 1 });
+                        }
+                        break;
+                    case "ArrowUp":
+                        if (this.state.selectedResult > -1) {
+                            this.setState({ selectedResult: this.state.selectedResult - 1 });
+                        }
+                        break;
+                    case "Enter":
+                        if (this.state.selectedResult > -1) {
+                            this.handleClick(this.state.results[this.state.selectedResult].id);
+                        } else {
+                            this.handleClick(this.state.results[0].id);
+                        }
+                        break;
+                    default:
+                        this.setState({ selectedResult: -1 });
+                }
+            }
+        });
+    }
 
     resizeResults(search) {
         //fonction qui permet de donner aux résultats la même largeur que le champ input
@@ -44,8 +83,7 @@ class SearchBar extends React.Component {
                         id: this.props.allCoinsList[id].id,
                         name: this.props.allCoinsList[id].name,
                     });
-                }
-                else if (
+                } else if (
                     this.props.allCoinsList[id].name
                         .toUpperCase()
                         .startsWith(event.target.value.toUpperCase()) &&
@@ -58,15 +96,18 @@ class SearchBar extends React.Component {
                 }
                 id++;
             }
-            this.setState({ results: results, search: event.target.value });
+            this.setState({
+                results: results,
+                search: event.target.value,
+                selectedResult: -1,
+            });
         } else {
-            this.setState({ results: [], search: event.target.value });
+            this.setState({ results: [], search: event.target.value, selectedResult: -1 });
         }
     };
 
     handleClick(coin) {
-        this.setState({ results: [], search: "" });
-        this.resizeResults("")
+        this.reset();
 
         switch (this.props.side) {
             case "left":
@@ -81,20 +122,28 @@ class SearchBar extends React.Component {
         }
     }
 
+    reset() {
+        this.setState({ results: [], search: "", selectedResult: -1 });
+        this.resizeResults("");
+    }
+
     render() {
         return (
             <div className="vertical container">
                 <input
+                    className="searchBar"
                     id={`searchWrapper-${this.props.side}`}
                     type="text"
-                    placeholder="Recherche"
+                    placeholder={this.props.placeholder || "Rechercher une crypto"}
                     onChange={this.handleSearchUpdate}
                     value={this.state.search}
                 ></input>
                 <div className={`results ${this.props.side}`}>
-                    {this.state.results.map((result) => (
+                    {this.state.results.map((result, id) => (
                         <div
-                            className="result"
+                            className={`result ${
+                                this.state.selectedResult === id && "selected"
+                            }`}
                             key={result.id + this.props.side}
                             onClick={() => this.handleClick(result.id)}
                         >

@@ -6,20 +6,31 @@ import Comparator from "./Comparator.js";
 import VersusChart from "./VersusChart.js";
 import Favorite from "./Favorite.js";
 
+import { fetchCoinData, setVisibilityFilter } from "../actions";
+
 class Versus extends React.Component {
+    handleClick(coin) {
+        this.props.setVisibilityFilter("DISPLAY_ONE_COIN");
+        this.props.fetchCoinData(coin);
+    }
 
     render() {
         return (
             <div className="main sub container">
                 <div className="container">
                     <SearchBar side="left" />
-                    <SearchBar side="right" />
+                    <SearchBar side="right" placeholder="La comparer à cette crypto" />
                 </div>
-                <div className="container">
+                <div className="container box">
                     {this.props.coinData && (
-                        <div>
-                            <div className="wrapper">
-                                <h2>{this.props.coinData.name}</h2>
+                        <div className="coin-wrap">
+                            <div className="wrapper title">
+                                <h2
+                                    className="clickable"
+                                    onClick={() => this.handleClick(this.props.coinData.id)}
+                                >
+                                    {this.props.coinData.name}
+                                </h2>
                                 <Favorite coin={this.props.coinData} origin="versus" />
                             </div>
                             <img
@@ -75,9 +86,16 @@ class Versus extends React.Component {
                         </div>
                     )}
                     {this.props.coinDataRight && (
-                        <div>
-                            <div className="wrapper">
-                                <h2>{this.props.coinDataRight.name}</h2>
+                        <div className="coin-wrap">
+                            <div className="wrapper title">
+                                <h2
+                                    className="clickable"
+                                    onClick={() =>
+                                        this.handleClick(this.props.coinDataRight.id)
+                                    }
+                                >
+                                    {this.props.coinDataRight.name}
+                                </h2>
                                 <Favorite coin={this.props.coinDataRight} origin="versus" />
                             </div>
                             <img
@@ -104,4 +122,4 @@ const mapStateToProps = (state) => {
     return { coinData: state.coinData, coinDataRight: state.coinDataRight };
 };
 
-export default connect(mapStateToProps)(Versus);
+export default connect(mapStateToProps, { fetchCoinData, setVisibilityFilter })(Versus);
