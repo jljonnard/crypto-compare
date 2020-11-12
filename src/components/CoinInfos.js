@@ -98,7 +98,9 @@ class CoinInfos extends React.Component {
                                 </table>
                             </div>
                         </div>
-                        <Chart id={this.props.coinData.id} />
+                        <div className="container">
+                            <Chart id={this.props.coinData.id} />
+                        </div>
                     </div>
                 )}
             </div>

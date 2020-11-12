@@ -25,6 +25,11 @@ class Versus extends React.Component {
                     {this.props.coinData && (
                         <div className="coin-wrap">
                             <div className="wrapper title">
+                                <img
+                                    className="pic only-on-small-screen"
+                                    src={this.props.coinData.logo.small}
+                                    alt={this.props.coinData.name}
+                                ></img>
                                 <h2
                                     className="clickable"
                                     onClick={() => this.handleClick(this.props.coinData.id)}
@@ -34,6 +39,7 @@ class Versus extends React.Component {
                                 <Favorite coin={this.props.coinData} origin="versus" />
                             </div>
                             <img
+                                className="only-on-big-screen"
                                 src={this.props.coinData.logo.large}
                                 alt={this.props.coinData.name}
                             ></img>
@@ -88,6 +94,11 @@ class Versus extends React.Component {
                     {this.props.coinDataRight && (
                         <div className="coin-wrap">
                             <div className="wrapper title">
+                                <img
+                                    className="pic only-on-small-screen"
+                                    src={this.props.coinDataRight.logo.small}
+                                    alt={this.props.coinDataRight.name}
+                                ></img>
                                 <h2
                                     className="clickable"
                                     onClick={() =>
@@ -99,6 +110,7 @@ class Versus extends React.Component {
                                 <Favorite coin={this.props.coinDataRight} origin="versus" />
                             </div>
                             <img
+                                className="only-on-big-screen"
                                 src={this.props.coinDataRight.logo.large}
                                 alt={this.props.coinDataRight.name}
                             ></img>

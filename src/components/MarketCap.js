@@ -31,7 +31,7 @@ class MarketCap extends React.Component {
       return (
          <div className="vertical container box">
             <h4>MarketCap</h4>
-            <Doughnut 
+            <Doughnut
                data={{
                   labels: this.props.marketcaps.coins.map(coin => this.getCoinBySymbol(coin)).concat(["Autres"]),
                   datasets: [
@@ -53,8 +53,6 @@ class MarketCap extends React.Component {
                      }
                   ]
                }}
-               height="400px"
-               width="400px"
             />
          </div>
       );

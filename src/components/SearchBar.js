@@ -13,42 +13,51 @@ class SearchBar extends React.Component {
     };
 
     componentDidMount() {
-        document.addEventListener("click", (event) => {
-            if (event.target.className !== "searchBar") {
-                this.reset()
-             }
-        })
-
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "Tab") {
-                this.reset();
-            }
-
-            if (this.state.results.length > 0) {
-                switch (event.key) {
-                    case "ArrowDown":
-                        if (this.state.selectedResult < this.state.results.length - 1) {
-                            this.setState({ selectedResult: this.state.selectedResult + 1 });
-                        }
-                        break;
-                    case "ArrowUp":
-                        if (this.state.selectedResult > -1) {
-                            this.setState({ selectedResult: this.state.selectedResult - 1 });
-                        }
-                        break;
-                    case "Enter":
-                        if (this.state.selectedResult > -1) {
-                            this.handleClick(this.state.results[this.state.selectedResult].id);
-                        } else {
-                            this.handleClick(this.state.results[0].id);
-                        }
-                        break;
-                    default:
-                        this.setState({ selectedResult: -1 });
-                }
-            }
-        });
+        document.addEventListener("click", this.handleAllClicks);
+        document.addEventListener("keydown", this.handleKeyboard);
     }
+
+    componentWillUnmount() {
+        document.removeEventListener("click", this.handleAllClicks);
+        document.removeEventListener("keydown", this.handleKeyboard);
+    }
+
+    
+    handleAllClicks = (event) => {
+        if (event.target.className !== "searchBar") {
+            this.reset();
+        }
+    };
+
+    handleKeyboard = (event) => {
+        if (event.key === "Tab") {
+            this.reset();
+        }
+
+        if (this.state.results.length > 0) {
+            switch (event.key) {
+                case "ArrowDown":
+                    if (this.state.selectedResult < this.state.results.length - 1) {
+                        this.setState({ selectedResult: this.state.selectedResult + 1 });
+                    }
+                    break;
+                case "ArrowUp":
+                    if (this.state.selectedResult > -1) {
+                        this.setState({ selectedResult: this.state.selectedResult - 1 });
+                    }
+                    break;
+                case "Enter":
+                    if (this.state.selectedResult > -1) {
+                        this.handleClick(this.state.results[this.state.selectedResult].id);
+                    } else {
+                        this.handleClick(this.state.results[0].id);
+                    }
+                    break;
+                default:
+                    this.setState({ selectedResult: -1 });
+            }
+        }
+    };
 
     resizeResults(search) {
         //fonction qui permet de donner aux résultats la même largeur que le champ input

@@ -12,10 +12,25 @@ class Navigation extends React.Component {
         areSelected: [true, false, false],
     };
 
+    componentDidMount() {
+        if (this.props.filter === "NAVIGATION") {
+            const navigation = document.querySelector("nav");
+            navigation.style.display = "block";
+        }
+    }
+
     componentDidUpdate(prevProps) {
-        if(this.props.filter !== prevProps.filter) {
-            if(this.props.filter === "DISPLAY_ONE_COIN") {
-                this.setState({ areSelected: [false, false, false] })
+        if (this.props.filter !== prevProps.filter) {
+            if (this.props.filter === "DISPLAY_ONE_COIN") {
+                this.setState({ areSelected: [false, false, false] });
+            }
+
+            const navigation = document.querySelector("nav");
+            if (this.props.filter === "NAVIGATION") {
+                navigation.style.display = "block";
+            } 
+            else if (prevProps.filter === "NAVIGATION") {
+                navigation.style.display = "none";
             }
         }
     }
@@ -38,8 +53,8 @@ class Navigation extends React.Component {
 
     render() {
         return (
-            <nav>
-                <header className="App-header">
+            <nav className="only-on-big-screen">
+                <header className="nav-header">
                     <div className="clickable inner" onClick={this.handleClick}>
                         <h1>Crypto Compare</h1>
                     </div>
@@ -68,23 +83,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { setVisibilityFilter })(Navigation);
-
-/*<div className="nav-wrapper">
-                    <div
-                        className="nav-element clickable"
-                        onClick={() => this.props.setVisibilityFilter("HOME")}
-                    >
-                        Accueil
-                    </div>
-                    <div
-                        className="nav-element clickable"
-                        onClick={() => this.props.setVisibilityFilter("DISPLAY_VERSUS")}
-                    >
-                        Versus
-                    </div>
-                    <div
-                        className="nav-element clickable"
-                        onClick={() => this.props.setVisibilityFilter("HOME")}
-                    >
-                        DeFi
-                    </div>*/

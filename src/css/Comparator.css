@@ -36,3 +36,21 @@
         font-weight: 700;
     }
 
+    @media screen and (max-width: 1300px) {
+        .comparator-wrap {
+            font-size: 120%;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        .comparator-wrap {
+            font-size: 110%;
+        }
+    }
+
+    @media screen and (max-width: 720px) {
+        .comparator-wrap {
+            font-size: 100%;
+        }
+    }
+

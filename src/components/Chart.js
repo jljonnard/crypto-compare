@@ -4,25 +4,32 @@ import { connect } from "react-redux";
 
 import { fetchCoinChart } from "../actions";
 
-const buttons = [{
-    days: 1,
-    legend: '1D'
-},{
-    days: 7,
-    legend: '7D'
-},{
-    days: 30,
-    legend: '1M'
-},{
-    days: 90,
-    legend: '3M'
-},{
-    days: 180,
-    legend: '6M'
-},{
-    days: 365,
-    legend: '1Y'
-}]
+const buttons = [
+    {
+        days: 1,
+        legend: "1D",
+    },
+    {
+        days: 7,
+        legend: "7D",
+    },
+    {
+        days: 30,
+        legend: "1M",
+    },
+    {
+        days: 90,
+        legend: "3M",
+    },
+    {
+        days: 180,
+        legend: "6M",
+    },
+    {
+        days: 365,
+        legend: "1Y",
+    },
+];
 
 class Chart extends React.Component {
     componentDidMount() {
@@ -39,14 +46,16 @@ class Chart extends React.Component {
         return (
             <div className="chart box">
                 <div className="left container">
-                    {buttons.map(button => (
+                    {buttons.map((button) => (
                         <div
-                        key={button.days}
-                        className="small button"
-                        onClick={() => this.props.fetchCoinChart(this.props.id, button.days)}
-                    >
-                        {button.legend}
-                    </div>
+                            key={button.days}
+                            className="small button"
+                            onClick={() =>
+                                this.props.fetchCoinChart(this.props.id, button.days)
+                            }
+                        >
+                            {button.legend}
+                        </div>
                     ))}
                 </div>
                 {this.props.coinChart && (
@@ -64,7 +73,6 @@ class Chart extends React.Component {
                                 },
                             ],
                         }}
-                        height="200px"
                         options={{
                             maintainAspectRatio: false,
                             legend: { display: false },
