@@ -63,7 +63,21 @@ h6 {
     }
 
     h2 {
-        font-size: 170%;
+        font-size: 160%;
+    }
+
+    h4 {
+        font-size: 130%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 210%;
+    }
+
+    h2 {
+        font-size: 140%;
     }
 
     h4 {
@@ -228,6 +242,7 @@ nav {
 /* Inputs */
 
 input[type="text"] {
+    -webkit-appearance: none;
     outline: 0;
     width: 100%;
     margin: 2%;
@@ -260,11 +275,12 @@ table {
         font-size: 110%;
         text-overflow: clip;
         overflow: hidden;
-        white-space: nowrap;
+        white-space: wrap;
     }
 
     table td {
         padding: 0.5em 0.5em;
+        text-overflow: ellipsis;
     }
 
     table th {
@@ -363,7 +379,7 @@ table {
 
     @media screen and (max-width: 980px) {
         .box {
-            width: 100%;
+            width: 96%;
         }
     }
 
@@ -416,6 +432,7 @@ table {
 /* Containers */
 
 .container {
+    -webkit-appearance: none;
     display: flex;
     justify-content: space-between;
     flex-basis: auto;
@@ -440,6 +457,10 @@ table {
         justify-content: left;
     }
 
+    .container.right {
+        justify-content: right;
+    }
+
     @media screen and (max-width: 1300px) {
         .container.main {
             margin-left: 2%;
@@ -450,6 +471,7 @@ table {
     @media screen and (max-width: 980px) {
         .container {
             flex-wrap: wrap;
+            align-items: center;
         }
     }
 
@@ -471,6 +493,18 @@ table {
 
 .pic {
     margin-right: 0.9em;
+}
+
+@media screen and (max-width: 980px) {
+    .star {
+        font-size: 180%;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .star {
+        font-size: 140%;
+    }
 }
 
 /* Percentages */

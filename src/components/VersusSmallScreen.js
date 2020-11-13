@@ -8,7 +8,7 @@ import Favorite from "./Favorite.js";
 
 import { fetchCoinData, setVisibilityFilter } from "../actions";
 
-class Versus extends React.Component {
+class VersusSmallScreen extends React.Component {
     handleClick(coin) {
         this.props.setVisibilityFilter("DISPLAY_ONE_COIN");
         this.props.fetchCoinData(coin);
@@ -16,7 +16,7 @@ class Versus extends React.Component {
 
     render() {
         return (
-            <div className="main sub container">
+            <div className="main sub container a">
                 <div className="container">
                     <SearchBar side="left" />
                     <SearchBar side="right" placeholder="La comparer à cette crypto" />
@@ -38,14 +38,33 @@ class Versus extends React.Component {
                                 </h2>
                                 <Favorite coin={this.props.coinData} origin="versus" />
                             </div>
-                            <img
-                                className="only-on-big-screen"
-                                src={this.props.coinData.logo.large}
-                                alt={this.props.coinData.name}
-                            ></img>
                         </div>
+                        <h2>VS</h2>
                         {this.props.coinDataRight && (
-                            <div>
+                            <div className="coin-wrap">
+                                <div className="wrapper title">
+                                    <img
+                                        className="pic only-on-small-screen"
+                                        src={this.props.coinDataRight.logo.small}
+                                        alt={this.props.coinDataRight.name}
+                                    ></img>
+                                    <h2
+                                        className="clickable"
+                                        onClick={() =>
+                                            this.handleClick(this.props.coinDataRight.id)
+                                        }
+                                    >
+                                        {this.props.coinDataRight.name}
+                                    </h2>
+                                    <Favorite
+                                        coin={this.props.coinDataRight}
+                                        origin="versus"
+                                    />
+                                </div>
+                            </div>
+                        )}
+                        {this.props.coinDataRight && (
+                            <div className="comparators">
                                 <Comparator
                                     title="MarketCap"
                                     leftData={this.props.coinData.marketcap}
@@ -90,34 +109,6 @@ class Versus extends React.Component {
                                 />
                             </div>
                         )}
-                        {this.props.coinDataRight && (
-                            <div className="coin-wrap">
-                                <div className="wrapper title">
-                                    <img
-                                        className="pic only-on-small-screen"
-                                        src={this.props.coinDataRight.logo.small}
-                                        alt={this.props.coinDataRight.name}
-                                    ></img>
-                                    <h2
-                                        className="clickable"
-                                        onClick={() =>
-                                            this.handleClick(this.props.coinDataRight.id)
-                                        }
-                                    >
-                                        {this.props.coinDataRight.name}
-                                    </h2>
-                                    <Favorite
-                                        coin={this.props.coinDataRight}
-                                        origin="versus"
-                                    />
-                                </div>
-                                <img
-                                    className="only-on-big-screen"
-                                    src={this.props.coinDataRight.logo.large}
-                                    alt={this.props.coinDataRight.name}
-                                ></img>
-                            </div>
-                        )}
                     </div>
                 )}
                 {this.props.coinData && this.props.coinDataRight && (
@@ -135,4 +126,4 @@ const mapStateToProps = (state) => {
     return { coinData: state.coinData, coinDataRight: state.coinDataRight };
 };
 
-export default connect(mapStateToProps, { fetchCoinData, setVisibilityFilter })(Versus);
+export default connect(mapStateToProps, { fetchCoinData, setVisibilityFilter })(VersusSmallScreen);

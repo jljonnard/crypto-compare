@@ -37,9 +37,9 @@ class Favorite extends React.Component {
         return (
             <div onClick={this.handleClick}>
                 {this.state.isFavorite ? (
-                    <i className="material-icons clickable">star</i>
+                    <i className="material-icons star clickable">star</i>
                 ) : (
-                    <i className="material-icons clickable">star_border</i>
+                    <i className="material-icons star clickable">star_border</i>
                 )}
             </div>
         );

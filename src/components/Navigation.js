@@ -79,6 +79,7 @@ class Navigation extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(window.innerWidth)
     return { filter: state.visibilityFilter };
 };
 

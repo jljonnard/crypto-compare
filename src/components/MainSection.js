@@ -9,6 +9,7 @@ import Versus from "./Versus.js";
 import Navigation from "./Navigation.js";
 
 import { fetchAllCoinsList, setVisibilityFilter } from "../actions";
+import VersusSmallScreen from "./VersusSmallScreen.js";
 
 class MainSection extends React.Component {
     componentDidMount() {
@@ -33,7 +34,9 @@ class MainSection extends React.Component {
                         <CoinInfos />
                     </div>
                 )}
-                {this.props.filter === "DISPLAY_VERSUS" && <Versus />}
+                {this.props.filter === "DISPLAY_VERSUS" && (
+                    <div>{window.innerWidth > 720 ? <Versus /> : <VersusSmallScreen />}</div>
+                )}
                 {this.props.filter === "NAVIGATION" && <Navigation />}
             </div>
         );

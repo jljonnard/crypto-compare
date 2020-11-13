@@ -1,3 +1,7 @@
+.comparators {
+    margin: auto;
+}
+
 .comparator-title {
     color: #9f6bc0;
     text-align: center;
@@ -51,6 +55,7 @@
     @media screen and (max-width: 720px) {
         .comparator-wrap {
             font-size: 100%;
+            justify-content: center;
         }
     }
 
