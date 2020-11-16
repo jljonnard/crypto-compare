@@ -32,6 +32,10 @@ const buttons = [
 ];
 
 class Chart extends React.Component {
+    state = {
+        buttonSelected: 7,
+    };
+
     componentDidMount() {
         this.props.fetchCoinChart(this.props.id, 7);
     }
@@ -42,6 +46,11 @@ class Chart extends React.Component {
         }
     }
 
+    handleButton(days) {
+        this.props.fetchCoinChart(this.props.id, days);
+        this.setState({ buttonSelected: days });
+    }
+
     render() {
         return (
             <div className="chart box">
@@ -49,10 +58,10 @@ class Chart extends React.Component {
                     {buttons.map((button) => (
                         <div
                             key={button.days}
-                            className="small button"
-                            onClick={() =>
-                                this.props.fetchCoinChart(this.props.id, button.days)
-                            }
+                            className={`small button ${
+                                button.days === this.state.buttonSelected && "selected"
+                            }`}
+                            onClick={() => this.handleButton(button.days)}
                         >
                             {button.legend}
                         </div>
@@ -74,11 +83,26 @@ class Chart extends React.Component {
                             ],
                         }}
                         options={{
+                            responsive: true,
                             maintainAspectRatio: false,
                             legend: { display: false },
                             scales: {
-                                xAxes: [{ gridLines: { display: false } }],
-                                yAxes: [{ gridLines: { display: false } }],
+                                xAxes: [
+                                    {
+                                        ticks: {
+                                            maxTicksLimit: 15,
+                                        },
+                                        gridLines: { display: false },
+                                    },
+                                ],
+                                yAxes: [
+                                    {
+                                        ticks: {
+                                            maxTicksLimit: 10,
+                                        },
+                                        gridLines: { display: false },
+                                    },
+                                ],
                             },
                         }}
                     />

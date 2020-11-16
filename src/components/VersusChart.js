@@ -32,14 +32,27 @@ const buttons = [
 ];
 
 class VersusChart extends React.Component {
+    state = {
+        buttonSelected: 7,
+    };
+
     componentDidMount() {
         this.props.fetchVersusChart(this.props.leftId, this.props.rightId, 7);
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.leftId !== prevProps.leftId || this.props.rightId !== prevProps.rightId) {
+        if (
+            this.props.leftId !== prevProps.leftId ||
+            this.props.rightId !== prevProps.rightId
+        ) {
             this.props.fetchVersusChart(this.props.leftId, this.props.rightId, 7);
+            this.setState({ buttonSelected: 7 });
         }
+    }
+
+    handleButton(days) {
+        this.props.fetchVersusChart(this.props.leftId, this.props.rightId, days);
+        this.setState({ buttonSelected: days });
     }
 
     render() {
@@ -48,15 +61,11 @@ class VersusChart extends React.Component {
                 <div className="left container">
                     {buttons.map((button) => (
                         <div
-                        key={button.days}
-                            className="small button"
-                            onClick={() =>
-                                this.props.fetchVersusChart(
-                                    this.props.leftId,
-                                    this.props.rightId,
-                                    button.days
-                                )
-                            }
+                            key={button.days}
+                            className={`small button ${
+                                button.days === this.state.buttonSelected && "selected"
+                            }`}
+                            onClick={() => this.handleButton(button.days)}
                         >
                             {button.legend}
                         </div>
@@ -89,11 +98,26 @@ class VersusChart extends React.Component {
                         }}
                         height="200px"
                         options={{
+                            responsive: true,
                             maintainAspectRatio: false,
-                            legend: { display: false },
+                            legend: { display: true },
                             scales: {
-                                xAxes: [{ gridLines: { display: false } }],
-                                yAxes: [{ gridLines: { display: false } }],
+                                xAxes: [
+                                    {
+                                        ticks: {
+                                            maxTicksLimit: 15,
+                                        },
+                                        gridLines: { display: false },
+                                    },
+                                ],
+                                yAxes: [
+                                    {
+                                        ticks: {
+                                            maxTicksLimit: 10,
+                                        },
+                                        gridLines: { display: false },
+                                    },
+                                ],
                             },
                         }}
                     />

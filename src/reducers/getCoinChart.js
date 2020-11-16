@@ -1,3 +1,5 @@
+import { getSixDigitsOnly } from "../specificFunctions/getSixDigits.js"
+
 export default (state = [[], []], action) => {
     switch (action.type) {
         case "FETCH_COIN_CHART_1":
@@ -6,7 +8,7 @@ export default (state = [[], []], action) => {
                     const tempDate = new Date(time[0]);
                     return tempDate.getHours().toString() + ":00";
                 }),
-                action.payload.data.prices.map((price) => Math.round(price[1] * 100) / 100),
+                action.payload.data.prices.map((price) => getSixDigitsOnly(price[1])),
             ];
         case "FETCH_COIN_CHART_7":
             return [
@@ -19,7 +21,7 @@ export default (state = [[], []], action) => {
                         ":00"
                     );
                 }),
-                action.payload.data.prices.map((price) => Math.round(price[1] * 100) / 100),
+                action.payload.data.prices.map((price) => getSixDigitsOnly(price[1])),
             ];
         case "FETCH_COIN_CHART_30":
             return [
@@ -27,7 +29,7 @@ export default (state = [[], []], action) => {
                     const tempDate = new Date(time[0]);
                     return tempDate.getDate().toString();
                 }),
-                action.payload.data.prices.map((price) => Math.round(price[1] * 100) / 100),
+                action.payload.data.prices.map((price) => getSixDigitsOnly(price[1])),
             ];
         case "FETCH_COIN_CHART_90":
             return [
@@ -39,7 +41,7 @@ export default (state = [[], []], action) => {
                         (tempDate.getMonth() + 1).toString()
                     );
                 }),
-                action.payload.data.prices.map((price) => Math.round(price[1] * 100) / 100),
+                action.payload.data.prices.map((price) => getSixDigitsOnly(price[1])),
             ];
         case "FETCH_COIN_CHART_180":
             return [
@@ -51,7 +53,7 @@ export default (state = [[], []], action) => {
                         (tempDate.getMonth() + 1).toString()
                     );
                 }),
-                action.payload.data.prices.map((price) => Math.round(price[1] * 100) / 100),
+                action.payload.data.prices.map((price) => getSixDigitsOnly(price[1])),
             ];
         case "FETCH_COIN_CHART_365":
             return [
@@ -63,7 +65,7 @@ export default (state = [[], []], action) => {
                         (tempDate.getMonth() + 1).toString()
                     );
                 }),
-                action.payload.data.prices.map((price) => Math.round(price[1] * 100) / 100),
+                action.payload.data.prices.map((price) => getSixDigitsOnly(price[1])),
             ];
         default:
             return state;

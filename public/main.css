@@ -214,7 +214,7 @@ nav {
     white-space: nowrap;
 }
 
-    .button:hover {
+    .button:hover, .button.selected {
         color: #9f6bc0;
         background: none;
     }
@@ -527,9 +527,16 @@ table {
     width: auto;
 }
 
-.chrt {
-    margin-top: 3%;
-    max-height: 75%;
+.chart {
+    min-width: 50vw;
+    min-height: 45vh;
+}
+
+@media screen and (max-width: 980px) {
+    .doughnut {
+        min-width: 50vw;
+        min-height: 45vh;
+    }
 }
 
 .code {
