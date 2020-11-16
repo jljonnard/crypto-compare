@@ -1,68 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ce code correspond à l'application disponible [ici](https://crypto-compare-eta.vercel.app/).
 
-## Available Scripts
+# But de l'application
 
-In the project directory, you can run:
+Cette application permet de chercher des informations sur des cryto-monnaies et notamment de les comparer entre elles directement.
 
-### `npm start`
+Il y a pour le moment 4 grandes fonctionnalités sur le site :
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`Rechercher`: permettant d'avoir plusieurs informations sur une crypto-monnaie, avec un graphique de prix dont on peut changer l'échelle<br />
+`Versus`: proposant de comparer 2 crypto-monnaies sur leurs stats et sur un graphique commun en %<br />
+`Accueil`: où l'on peut retrouver la répartition du marketcap du top 10, ainsi que les tendances<br />
+`Favoris` : permettant de retrouver toutes les infos des crypto-monnaies préférées de l'utilisateur en 1 clic
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Une page `DeFi` est aussi en cours de création et pourrait arriver bientôt.
 
-### `npm test`
+Tous les graphiques peuvent être vus selon 6 échelles de temps (1 jour, 1 semaine, 1 mois, 3 mois, 6 mois, 1an).
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Technologies utilisées
 
-### `npm run build`
+## React
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Le framework React a été utilisé pour mener à bien ce projet.<br />
+L'approche des `classes` a été choisie pour pouvoir travailler aisément avec Redux.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Redux
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Le projet manipulant un très grand nombre de données, l'approche Redux a été choisie.<br />
+Elle permet de faciliter aussi la gestion de favoris et de charts.
 
-### `npm run eject`
+## API
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Seulement une API a été utilisée lors du projet :
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `Coingecko`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Cette API permet d'obtenir une plétorée d'informations sur les crypto-monnaies.<br />
+Le taux de réponse est très bon, l'API ne nécessite pas de clé, les réponses sont bien organisées et on peut lui soumettre jusqu'à 100 requêtes par minute. C'est donc une API très agréable pour travailler avec.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+L'API est utilisée pour obtenir :
+<ul>
+<li><strong>La liste de toutes les crypto-monnaies</strong> : utile pour la recherche de crypto-monnaies</li>
+<li><strong>Diverses informations sur une crypto-monnaie</strong> : utile pour la section Rechercher et Versus</li>
+<li><strong>Les évolutions de prix sur une crypto-monnaie</strong> : utile pour réaliser tous les graphiques</li>
+<li><strong>Les crypto-monnaies en tendances</strong> : utile pour les afficher en page d'accueil</li>
+<li><strong>La répartion du marketcap dans le top 10</strong> : utile pour le mettre sous forme de diagramme circulaire en page d'accueil</li>
+</ul>
 
-## Learn More
+## Chart.js
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Chart.js est une bibliothèque qui permet de faire différents diagrammes et graphiques en JavaScript. Il existe une version adaptée pour React et c'est celle-ci qui est utilisée dans ce projet. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+On la retrouve dans les graphiques de prix et dans le diagramme circulaire du début.
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Les graphiques sont beaux et bien gérés par la bibliothèque. Le gros défaut est la documentation incomplète et même inexistante pour React, qui peut ralentir le travail.
