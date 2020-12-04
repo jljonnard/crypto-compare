@@ -6,7 +6,7 @@ import Comparator from "./Comparator.js";
 import VersusChart from "./VersusChart.js";
 import Favorite from "./Favorite.js";
 
-import { fetchCoinData, setVisibilityFilter } from "../actions";
+import { fetchCoinData, fetchCoinDataRight, setVisibilityFilter } from "../actions";
 
 class VersusSmallScreen extends React.Component {
     handleClick(coin) {
@@ -18,8 +18,8 @@ class VersusSmallScreen extends React.Component {
         return (
             <div className="main sub container a">
                 <div className="container">
-                    <SearchBar side="left" />
-                    <SearchBar side="right" placeholder="La comparer à cette crypto" />
+                    <SearchBar fetchSearch={this.props.fetchCoinData} id="left" />
+                    <SearchBar fetchSearch={this.props.fetchCoinDataRight} id="right" placeholder="La comparer à cette crypto" />
                 </div>
                 {this.props.coinData && (
                     <div className="container box">
@@ -126,4 +126,4 @@ const mapStateToProps = (state) => {
     return { coinData: state.coinData, coinDataRight: state.coinDataRight };
 };
 
-export default connect(mapStateToProps, { fetchCoinData, setVisibilityFilter })(VersusSmallScreen);
+export default connect(mapStateToProps, { fetchCoinData, fetchCoinDataRight, setVisibilityFilter })(VersusSmallScreen);

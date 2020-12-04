@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { fetchCoinData, fetchCoinDataRight, setVisibilityFilter } from "../actions";
+import { setVisibilityFilter } from "../actions";
 
 import "../css/SearchBar.css";
 
@@ -22,7 +22,6 @@ class SearchBar extends React.Component {
         document.removeEventListener("keydown", this.handleKeyboard);
     }
 
-    
     handleAllClicks = (event) => {
         if (event.target.className !== "searchBar") {
             this.reset();
@@ -61,8 +60,8 @@ class SearchBar extends React.Component {
 
     resizeResults(search) {
         //fonction qui permet de donner aux résultats la même largeur que le champ input
-        const wrapper = document.querySelector("#searchWrapper-" + this.props.side);
-        let resultsSpace = document.querySelector(".results." + this.props.side);
+        const wrapper = document.querySelector("#searchWrapper-" + this.props.id);
+        let resultsSpace = document.querySelector(".results." + this.props.id);
 
         if (resultsSpace) {
             resultsSpace.style.width = wrapper.offsetWidth + "px";
@@ -117,17 +116,9 @@ class SearchBar extends React.Component {
 
     handleClick(coin) {
         this.reset();
-
-        switch (this.props.side) {
-            case "left":
-                this.props.fetchCoinData(coin);
-                break;
-            case "right":
-                this.props.fetchCoinDataRight(coin);
-                break;
-            default:
-                this.props.fetchCoinData(coin);
-                this.props.setVisibilityFilter("DISPLAY_ONE_COIN");
+        this.props.fetchSearch(coin);
+        if (!this.props.id) {
+            this.props.setVisibilityFilter("DISPLAY_ONE_COIN");
         }
     }
 
@@ -141,19 +132,19 @@ class SearchBar extends React.Component {
             <div className="vertical container">
                 <input
                     className="searchBar"
-                    id={`searchWrapper-${this.props.side}`}
+                    id={`searchWrapper-${this.props.id}`}
                     type="text"
                     placeholder={this.props.placeholder || "Rechercher une crypto"}
                     onChange={this.handleSearchUpdate}
                     value={this.state.search}
                 ></input>
-                <div className={`results ${this.props.side}`}>
+                <div className={`results ${this.props.id}`}>
                     {this.state.results.map((result, id) => (
                         <div
                             className={`result ${
                                 this.state.selectedResult === id && "selected"
                             }`}
-                            key={result.id + this.props.side}
+                            key={result.id + this.props.id}
                             onClick={() => this.handleClick(result.id)}
                         >
                             {result.name}
@@ -169,8 +160,4 @@ const mapStateToProps = (state) => {
     return { allCoinsList: state.allCoinsList };
 };
 
-export default connect(mapStateToProps, {
-    fetchCoinData,
-    fetchCoinDataRight,
-    setVisibilityFilter,
-})(SearchBar);
+export default connect(mapStateToProps, { setVisibilityFilter })(SearchBar);

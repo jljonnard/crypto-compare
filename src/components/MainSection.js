@@ -8,7 +8,7 @@ import CoinInfos from "./CoinInfos.js";
 import Versus from "./Versus.js";
 import Navigation from "./Navigation.js";
 
-import { fetchAllCoinsList, setVisibilityFilter } from "../actions";
+import { fetchAllCoinsList, fetchCoinData, setVisibilityFilter } from "../actions";
 import VersusSmallScreen from "./VersusSmallScreen.js";
 
 class MainSection extends React.Component {
@@ -21,7 +21,7 @@ class MainSection extends React.Component {
             <div className="page-wrap">
                 {this.props.filter === "HOME" && (
                     <div>
-                        <SearchBar side="alone" />
+                        <SearchBar fetchSearch={this.props.fetchCoinData} />
                         <div className="main container">
                             <MarketCap />
                             <TrendingList />
@@ -30,7 +30,7 @@ class MainSection extends React.Component {
                 )}
                 {this.props.filter === "DISPLAY_ONE_COIN" && (
                     <div>
-                        <SearchBar side="alone" />
+                        <SearchBar fetchSearch={this.props.fetchCoinData} />
                         <CoinInfos />
                     </div>
                 )}
@@ -47,6 +47,6 @@ const mapStateToProps = (state) => {
     return { filter: state.visibilityFilter };
 };
 
-export default connect(mapStateToProps, { fetchAllCoinsList, setVisibilityFilter })(
+export default connect(mapStateToProps, { fetchAllCoinsList, fetchCoinData, setVisibilityFilter })(
     MainSection
 );
