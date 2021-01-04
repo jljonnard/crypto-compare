@@ -28,7 +28,7 @@ class MainSection extends React.Component {
                         </div>
                     </div>
                 )}
-                {this.props.filter === "DISPLAY_ONE_COIN" && (
+                {this.props.filter === "DISPLAY_ONE_COIN" && this.props.coinData && (
                     <div>
                         <SearchBar fetchSearch={this.props.fetchCoinData} />
                         <CoinInfos />
@@ -44,9 +44,11 @@ class MainSection extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { filter: state.visibilityFilter };
+    return { filter: state.visibilityFilter, coinData: state.coinData.left };
 };
 
-export default connect(mapStateToProps, { fetchAllCoinsList, fetchCoinData, setVisibilityFilter })(
-    MainSection
-);
+export default connect(mapStateToProps, {
+    fetchAllCoinsList,
+    fetchCoinData,
+    setVisibilityFilter,
+})(MainSection);

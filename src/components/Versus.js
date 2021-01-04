@@ -25,109 +25,109 @@ class Versus extends React.Component {
                         placeholder="La comparer à cette crypto"
                     />
                 </div>
-                {this.props.coinData && (
+                {this.props.coinData.left && (
                     <div className="container box">
                         <div className="coin-wrap">
                             <div className="wrapper title">
                                 <img
                                     className="pic only-on-small-screen"
-                                    src={this.props.coinData.logo.small}
-                                    alt={this.props.coinData.name}
+                                    src={this.props.coinData.left.logo.small}
+                                    alt={this.props.coinData.left.name}
                                 ></img>
                                 <h2
                                     className="clickable"
-                                    onClick={() => this.handleClick(this.props.coinData.id)}
+                                    onClick={() => this.handleClick(this.props.coinData.left.id)}
                                 >
-                                    {this.props.coinData.name}
+                                    {this.props.coinData.left.name}
                                 </h2>
                                 <Favorite coin={this.props.coinData} origin="versus" />
                             </div>
                             <img
                                 className="only-on-big-screen"
-                                src={this.props.coinData.logo.large}
-                                alt={this.props.coinData.name}
+                                src={this.props.coinData.left.logo.large}
+                                alt={this.props.coinData.left.name}
                             ></img>
                         </div>
-                        {this.props.coinDataRight && (
+                        {this.props.coinData.right && (
                             <div>
                                 <Comparator
                                     title="MarketCap"
-                                    leftData={this.props.coinData.marketcap}
-                                    rightData={this.props.coinDataRight.marketcap}
+                                    leftData={this.props.coinData.left.marketcap}
+                                    rightData={this.props.coinData.right.marketcap}
                                     add="M$"
                                 />
                                 <Comparator
                                     title="Score communautaire"
-                                    leftData={this.props.coinData.communityScore}
-                                    rightData={this.props.coinDataRight.communityScore}
+                                    leftData={this.props.coinData.left.communityScore}
+                                    rightData={this.props.coinData.right.communityScore}
                                     add="/ 20"
                                 />
                                 <Comparator
                                     title="Sentiment haussier"
-                                    leftData={this.props.coinData.sentimentUp}
-                                    rightData={this.props.coinDataRight.sentimentUp}
+                                    leftData={this.props.coinData.left.sentimentUp}
+                                    rightData={this.props.coinData.right.sentimentUp}
                                     add="%"
                                 />
                                 <Comparator
                                     title="Variation sur 1 jour"
-                                    leftData={this.props.coinData.priceChange24h}
-                                    rightData={this.props.coinDataRight.priceChange24h}
+                                    leftData={this.props.coinData.left.priceChange24h}
+                                    rightData={this.props.coinData.right.priceChange24h}
                                     add="%"
                                 />
                                 <Comparator
                                     title="Variation sur 1 semaine"
-                                    leftData={this.props.coinData.priceChange7d}
-                                    rightData={this.props.coinDataRight.priceChange7d}
+                                    leftData={this.props.coinData.left.priceChange7d}
+                                    rightData={this.props.coinData.right.priceChange7d}
                                     add="%"
                                 />
                                 <Comparator
                                     title="Variation sur 1 mois"
-                                    leftData={this.props.coinData.priceChange30d}
-                                    rightData={this.props.coinDataRight.priceChange30d}
+                                    leftData={this.props.coinData.left.priceChange30d}
+                                    rightData={this.props.coinData.right.priceChange30d}
                                     add="%"
                                 />
                                 <Comparator
                                     title="Variation sur 1 an"
-                                    leftData={this.props.coinData.priceChange1y}
-                                    rightData={this.props.coinDataRight.priceChange1y}
+                                    leftData={this.props.coinData.left.priceChange1y}
+                                    rightData={this.props.coinData.right.priceChange1y}
                                     add="%"
                                 />
                             </div>
                         )}
-                        {this.props.coinDataRight && (
+                        {this.props.coinData.right && (
                             <div className="coin-wrap">
                                 <div className="wrapper title">
                                     <img
                                         className="pic only-on-small-screen"
-                                        src={this.props.coinDataRight.logo.small}
-                                        alt={this.props.coinDataRight.name}
+                                        src={this.props.coinData.right.logo.small}
+                                        alt={this.props.coinData.right.name}
                                     ></img>
                                     <h2
                                         className="clickable"
                                         onClick={() =>
-                                            this.handleClick(this.props.coinDataRight.id)
+                                            this.handleClick(this.props.coinData.right.id)
                                         }
                                     >
-                                        {this.props.coinDataRight.name}
+                                        {this.props.coinData.right.name}
                                     </h2>
                                     <Favorite
-                                        coin={this.props.coinDataRight}
+                                        coin={this.props.coinData.right}
                                         origin="versus"
                                     />
                                 </div>
                                 <img
                                     className="only-on-big-screen"
-                                    src={this.props.coinDataRight.logo.large}
-                                    alt={this.props.coinDataRight.name}
+                                    src={this.props.coinData.right.logo.large}
+                                    alt={this.props.coinData.right.name}
                                 ></img>
                             </div>
                         )}
                     </div>
                 )}
-                {this.props.coinData && this.props.coinDataRight && (
+                {this.props.coinData && this.props.coinData.right && (
                     <VersusChart
-                        leftId={this.props.coinData.id}
-                        rightId={this.props.coinDataRight.id}
+                        leftId={this.props.coinData.left.id}
+                        rightId={this.props.coinData.right.id}
                     />
                 )}
             </div>
@@ -136,7 +136,7 @@ class Versus extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { coinData: state.coinData, coinDataRight: state.coinDataRight };
+    return { coinData: state.coinData };
 };
 
 export default connect(mapStateToProps, {
