@@ -113,8 +113,8 @@ class VersusSmallScreen extends React.Component {
                 )}
                 {this.props.coinData && this.props.coinData.right && (
                     <VersusChart
-                        leftId={this.props.coinData.left.id}
-                        rightId={this.props.coinData.right.id}
+                        left={this.props.coinData.left}
+                        right={this.props.coinData.right}
                     />
                 )}
             </div>

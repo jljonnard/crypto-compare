@@ -37,21 +37,21 @@ class VersusChart extends React.Component {
     };
 
     componentDidMount() {
-        this.props.fetchVersusChart(this.props.leftId, this.props.rightId, 7);
+        this.props.fetchVersusChart(this.props.left.id, this.props.right.id, 7);
     }
 
     componentDidUpdate(prevProps) {
         if (
-            this.props.leftId !== prevProps.leftId ||
-            this.props.rightId !== prevProps.rightId
+            this.props.left.id !== prevProps.left.id ||
+            this.props.right.id !== prevProps.right.id
         ) {
-            this.props.fetchVersusChart(this.props.leftId, this.props.rightId, 7);
+            this.props.fetchVersusChart(this.props.left.id, this.props.right.id, 7);
             this.setState({ buttonSelected: 7 });
         }
     }
 
     handleButton(days) {
-        this.props.fetchVersusChart(this.props.leftId, this.props.rightId, days);
+        this.props.fetchVersusChart(this.props.left.id, this.props.right.id, days);
         this.setState({ buttonSelected: days });
     }
 
@@ -77,7 +77,7 @@ class VersusChart extends React.Component {
                             labels: this.props.coinChart.time,
                             datasets: [
                                 {
-                                    label: this.props.leftId,
+                                    label: this.props.left.name,
                                     data: this.props.coinChart.leftPrice,
                                     backgroundColor: "rgba(45,85,201,0)",
                                     borderColor: "rgba(45,85,201,0.6)",
@@ -86,7 +86,7 @@ class VersusChart extends React.Component {
                                     pointBorderColor: "rgba(0,0,0,0)",
                                 },
                                 {
-                                    label: this.props.rightId,
+                                    label: this.props.right.name,
                                     data: this.props.coinChart.rightPrice,
                                     backgroundColor: "rgba(145,85,201,0)",
                                     borderColor: "rgba(245,85,21,0.6)",
