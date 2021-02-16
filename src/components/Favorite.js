@@ -9,6 +9,7 @@ class Favorite extends React.Component {
     };
 
     initializeFavorite() {
+        console.log(this.props.coin)
         let flag = false;
         this.props.favoriteList.forEach((coin) => {
             if (coin.id === this.props.coin.id) {
@@ -47,6 +48,7 @@ class Favorite extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return { favoriteList: state.favoriteList };
 };
 

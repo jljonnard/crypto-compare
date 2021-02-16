@@ -40,7 +40,7 @@ class Versus extends React.Component {
                                 >
                                     {this.props.coinData.left.name}
                                 </h2>
-                                <Favorite coin={this.props.coinData} origin="versus" />
+                                <Favorite coin={this.props.coinData.left} origin="versus" />
                             </div>
                             <img
                                 className="only-on-big-screen"
